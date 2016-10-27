@@ -1,46 +1,69 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
+
+'use strict';
+var Home = require('./home.ios');
+var Quote = require('./quote.ios');
 
 import React, { Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
   Text,
+  Image,
+  TabBarIOS,
   View
 } from 'react-native';
 
-export default class Inspired extends Component {
+
+class Inspired extends Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        selectedTab: 'home'
+      };
+    }
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
-      </View>
+      <TabBarIOS selectedTab={this.state.selectedTab}>
+        <TabBarIOS.Item
+          selected={this.state.selectedTab === 'home'}
+          systemIcon={'most-recent'}
+          onPress={() => {
+            this.setState({
+                selectedTab: 'home',
+            });
+          }}>
+            <Home/>
+          </TabBarIOS.Item>
+          <TabBarIOS.Item
+            selected={this.state.selectedTab === 'quote'}
+            systemIcon={'contacts'}
+            onPress={() => {
+                this.setState({
+                  selectedTab: 'quote',
+                });
+            }}>
+              <Quote/>
+            </TabBarIOS.Item>
+          </TabBarIOS>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  image: {
+    flex: 1,
+    width: null,
+    height: null,
+    resizeMode: 'cover'
+},
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    height: 150
   },
   welcome: {
+    fontFamily: 'Cochin',
     fontSize: 20,
-    textAlign: 'center',
+    textAlign: 'left',
     margin: 10,
   },
   instructions: {
