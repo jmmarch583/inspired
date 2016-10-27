@@ -17,7 +17,7 @@ export default class Inspired extends Component {
   render() {
     return (
       <Image
-      style={{height: 100%, width: 100%}} 
+      style={styles.image}
       source={require('./background.jpg')}>
       <View style={styles.container}>
         <Text style={styles.welcome}>
@@ -37,10 +37,15 @@ export default class Inspired extends Component {
 }
 
 const styles = StyleSheet.create({
+  image: {
+    flex: 1,
+    width: null,
+    height: null,
+    resizeMode: 'cover'
+},
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   welcome: {
     fontFamily: 'Cochin',
