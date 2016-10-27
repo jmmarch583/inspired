@@ -9,15 +9,19 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
+  Image,
   View
 } from 'react-native';
 
 export default class Inspired extends Component {
   render() {
     return (
+      <Image
+      style={{height: 100%, width: 100%}} 
+      source={require('./background.jpg')}>
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          Welcome to React Native!
+          Inspired
         </Text>
         <Text style={styles.instructions}>
           To get started, edit index.ios.js
@@ -27,6 +31,7 @@ export default class Inspired extends Component {
           Cmd+D or shake for dev menu
         </Text>
       </View>
+      </Image>
     );
   }
 }
@@ -36,11 +41,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
   },
   welcome: {
+    fontFamily: 'Cochin',
     fontSize: 20,
-    textAlign: 'center',
+    textAlign: 'left',
     margin: 10,
   },
   instructions: {
