@@ -8,6 +8,7 @@ import {
   Image,
   TabBarIOS,
   View
+  
 } from 'react-native';
 
 import api from './utilities/api';
