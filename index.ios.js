@@ -17,6 +17,7 @@ import {
 
 import api from './api';
 import qod from './api';
+import Icon from 'react-native-vector-icons/FontAwesome'
 
 class Inspired extends Component {
   constructor(props){
@@ -44,26 +45,30 @@ class Inspired extends Component {
     console.log(quote, author, background)
     return (
       <TabBarIOS selectedTab={this.state.selectedTab}>
-        <TabBarIOS.Item
+        <Icon.TabBarItemIOS
+          title="Home"
+          iconName="home"
+          selectedIconName="home"
           selected={this.state.selectedTab === 'home'}
-          systemIcon={'most-recent'}
           onPress={() => {
             this.setState({
                 selectedTab: 'home',
             });
           }}>
             <Home/>
-          </TabBarIOS.Item>
-          <TabBarIOS.Item
+          </Icon.TabBarItemIOS>
+          <Icon.TabBarItemIOS
+            title="Quote of the Day"
+            iconName="sun-o"
+            selectedIconName="sun-o"
             selected={this.state.selectedTab === 'qod'}
-            systemIcon={'contacts'}
             onPress={() => {
                 this.setState({
                   selectedTab: 'qod',
                 });
             }}>
               <Quote qod={this.state.qod}/>
-            </TabBarIOS.Item>
+            </Icon.TabBarItemIOS>
           </TabBarIOS>
     );
   }
