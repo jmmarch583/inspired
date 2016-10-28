@@ -14,8 +14,7 @@ import {
   TabBarIOS,
   View
 } from 'react-native';
-
-import api from './api';
+import api from './utilities/api';
 
 class Inspired extends Component {
   constructor(props){

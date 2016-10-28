@@ -10,6 +10,8 @@ import {
   View
 } from 'react-native';
 
+import api from './utilities/api';
+
 var styles = StyleSheet.create({
   description: {
     fontSize: 20,
