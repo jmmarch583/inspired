@@ -55,14 +55,14 @@ class Inspired extends Component {
             <Home/>
           </TabBarIOS.Item>
           <TabBarIOS.Item
-            selected={this.state.selectedTab === 'quote'}
+            selected={this.state.selectedTab === 'qod'}
             systemIcon={'contacts'}
             onPress={() => {
                 this.setState({
-                  selectedTab: 'quote',
+                  selectedTab: 'qod',
                 });
             }}>
-              <Quote/>
+              <Quote qod={this.state.qod}/>
             </TabBarIOS.Item>
           </TabBarIOS>
     );
