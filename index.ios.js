@@ -29,7 +29,7 @@ class Inspired extends Component {
   componentDidMount(){
     var response = api.getQuote()
     .then((resJson) => {
-      this.setState({categories: resJson.contents.quotes})
+      this.setState({categories: resJson.contents.quotes[0]})
     })
     .catch((error) => {
       console.log("these are your errors",error);
@@ -37,10 +37,8 @@ class Inspired extends Component {
   }
 
   render() {
-    const {categories} = this.state
-    const response = categories[0]
-    const quote = response
-    console.log(quote)
+    const {quote, author, background} = this.state.categories
+    console.log(quote, author, background)
     return (
       <TabBarIOS selectedTab={this.state.selectedTab}>
         <TabBarIOS.Item
