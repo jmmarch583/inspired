@@ -41,12 +41,6 @@ class Home extends Component {
           onPress={() => this._handlePress()}>
           Categories
         </Button>
-        <Button
-          style={{fontSize: 20, color: 'green'}}
-          styleDisabled={{color: 'red'}}
-          onPress={() => this._handlePress()}>
-          Daily Quote
-        </Button>
       </View>
     );
   }
