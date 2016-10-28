@@ -3,6 +3,8 @@
 var Home = require('./home.ios');
 var Quote = require('./quote.ios');
 
+'use strict';
+
 import React, { Component } from 'react';
 import {
   AppRegistry,
@@ -13,15 +15,32 @@ import {
   View
 } from 'react-native';
 
+import api from './api';
 
 class Inspired extends Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        selectedTab: 'home'
-      };
+  constructor(props){
+    super(props);
+    this.state = {
+      categories: [],
+      selectedTab: 'home'
     }
+  }
+
+  componentDidMount(){
+    var response = api.getQuote()
+    .then((resJson) => {
+      this.setState({categories: resJson.contents.quotes})
+    })
+    .catch((error) => {
+      console.log("these are your errors",error);
+    });
+  }
+
   render() {
+    const {categories} = this.state
+    const response = categories[0]
+    const quote = response
+    console.log(quote)
     return (
       <TabBarIOS selectedTab={this.state.selectedTab}>
         <TabBarIOS.Item
