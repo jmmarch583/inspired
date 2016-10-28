@@ -1,4 +1,3 @@
-
 'use strict';
 var Home = require('./home.ios');
 var Quote = require('./quote.ios');
@@ -6,7 +5,6 @@ var Quote = require('./quote.ios');
 'use strict';
 
 import React, { Component } from 'react';
-
 import {
   AppRegistry,
   StyleSheet,
@@ -15,8 +13,6 @@ import {
   TabBarIOS,
   View
 } from 'react-native';
-import api from './utilities/api';
-
 
 import api from './api';
 import qod from './api';
