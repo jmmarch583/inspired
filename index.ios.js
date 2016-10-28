@@ -47,17 +47,6 @@ class Inspired extends Component {
       this.setState({swipeToClose: !this.state.swipeToClose});
     }
 
-    onClose() {
-      console.log('Modal just closed');
-    }
-
-    onOpen() {
-      console.log('Modal just openned');
-    }
-
-    onClosingState(state) {
-      console.log('the open/close of the swipeToClose just changed');
-    }
 
     renderList() {
       var list = [];
@@ -83,8 +72,7 @@ class Inspired extends Component {
     const {quote, author, background} = this.state.qod
     console.log(this.refs)
     return (
-      <View style={styles.wrapper}>
-        <Button onPress={this.openModal} style={styles.btn}>Basic modal</Button>
+
         <TabBarIOS selectedTab={this.state.selectedTab}>
           <Icon.TabBarItemIOS
             title="Home"
@@ -96,7 +84,7 @@ class Inspired extends Component {
                   selectedTab: 'home',
               });
             }}>
-              <Home/>
+              <Home buttonTouch={this.openModal} toggleDisable={this.toggleDisable} toggleSwipeToClose={this.toggleSwipeToClose}/>
             </Icon.TabBarItemIOS>
             <Icon.TabBarItemIOS
               title="Quote of the Day"
@@ -111,11 +99,6 @@ class Inspired extends Component {
                 <Quote qod={this.state.qod}/>
                 </Icon.TabBarItemIOS>
             </TabBarIOS>
-            <Modal style={[styles.modal, styles.modal]} ref={"modal"} swipeToClose={this.state.swipeToClose} onClosed={this.onClose} onOpened={this.onOpen} onClosingState={this.onClosingState}>
-              <Text style={styles.text}>Basic modal</Text>
-              <Button onPress={this.toggleSwipeToClose} style={styles.btn}>Disable swipeToClose({this.state.swipeToClose ? "true" : "false"})</Button>
-            </Modal>
-          </View>
     );
   }
 }
