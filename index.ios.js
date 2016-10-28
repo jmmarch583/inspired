@@ -16,6 +16,7 @@ import {
 } from 'react-native';
 
 import api from './api';
+import qod from './api';
 
 class Inspired extends Component {
   constructor(props){
@@ -27,9 +28,9 @@ class Inspired extends Component {
   }
 
   componentDidMount(){
-    var response = api.getQuote()
+    var response = qod.getQuoteofDay()
     .then((resJson) => {
-      this.setState({categories: resJson.contents.quotes[0]})
+      this.setState({categories: resJson.contents})
     })
     .catch((error) => {
       console.log("these are your errors",error);
