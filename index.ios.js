@@ -22,7 +22,9 @@ class Inspired extends Component {
   constructor(props){
     super(props);
     this.state = {
-      categories: [],
+      category: '',
+      qod: [],
+      categoryQuote: [],
       selectedTab: 'home'
     }
   }
@@ -30,7 +32,7 @@ class Inspired extends Component {
   componentDidMount(){
     var response = qod.getQuoteofDay()
     .then((resJson) => {
-      this.setState({categories: resJson.contents})
+      this.setState({qod: resJson.contents.quotes[0]})
     })
     .catch((error) => {
       console.log("these are your errors",error);
@@ -38,7 +40,7 @@ class Inspired extends Component {
   }
 
   render() {
-    const {quote, author, background} = this.state.categories
+    const {quote, author, background} = this.state.qod
     console.log(quote, author, background)
     return (
       <TabBarIOS selectedTab={this.state.selectedTab}>
