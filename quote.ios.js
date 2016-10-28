@@ -18,7 +18,7 @@ var styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    resizeMode: 'contain',
+    resizeMode: 'cover',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#654321',
