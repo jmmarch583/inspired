@@ -1,4 +1,3 @@
-
 'use strict';
 var Home = require('./home.ios');
 var Quote = require('./quote.ios');
