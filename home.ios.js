@@ -17,14 +17,13 @@ import {
 } from 'react-native';
 
 var styles = StyleSheet.create({
-<<<<<<< b6a16cb192a8f5e794c4cfdad235841f8b332d34
   container: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#123456'
-=======
+  },
   wrapper: {
    paddingTop: 50,
    flex: 1
