@@ -17,19 +17,26 @@ import {
 } from 'react-native';
 import api from './utilities/api';
 
+
+import api from './api';
+import qod from './api';
+import Icon from 'react-native-vector-icons/FontAwesome'
+
 class Inspired extends Component {
   constructor(props){
     super(props);
     this.state = {
-      categories: [],
+      category: '',
+      qod: [],
+      categoryQuote: [],
       selectedTab: 'home'
     }
   }
 
   componentDidMount(){
-    var response = api.getQuote()
+    var response = qod.getQuoteofDay()
     .then((resJson) => {
-      this.setState({categories: resJson.contents.quotes})
+      this.setState({qod: resJson.contents.quotes[0]})
     })
     .catch((error) => {
       console.log("these are your errors",error);
@@ -37,32 +44,34 @@ class Inspired extends Component {
   }
 
   render() {
-    const {categories} = this.state
-    const response = categories[0]
-    const quote = response
-    console.log(quote)
+    const {quote, author, background} = this.state.qod
+    console.log(quote, author, background)
     return (
       <TabBarIOS selectedTab={this.state.selectedTab}>
-        <TabBarIOS.Item
+        <Icon.TabBarItemIOS
+          title="Home"
+          iconName="home"
+          selectedIconName="home"
           selected={this.state.selectedTab === 'home'}
-          systemIcon={'most-recent'}
           onPress={() => {
             this.setState({
                 selectedTab: 'home',
             });
           }}>
             <Home/>
-          </TabBarIOS.Item>
-          <TabBarIOS.Item
-            selected={this.state.selectedTab === 'quote'}
-            systemIcon={'contacts'}
+          </Icon.TabBarItemIOS>
+          <Icon.TabBarItemIOS
+            title="Quote of the Day"
+            iconName="sun-o"
+            selectedIconName="sun-o"
+            selected={this.state.selectedTab === 'qod'}
             onPress={() => {
                 this.setState({
-                  selectedTab: 'quote',
+                  selectedTab: 'qod',
                 });
             }}>
-              <Quote/>
-            </TabBarIOS.Item>
+              <Quote qod={this.state.qod}/>
+            </Icon.TabBarItemIOS>
           </TabBarIOS>
     );
   }

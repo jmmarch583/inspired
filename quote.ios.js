@@ -20,20 +20,40 @@ var styles = StyleSheet.create({
   },
   container: {
     flex: 1,
+    resizeMode: 'contain',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#654321',
+  },
+  backdropView: {
+    height: 120,
+    width: 320,
+    backgroundColor: 'rgba(0,0,0,0)',
+  },
+  quoteText: {
+    fontSize: 20,
+    textAlign: 'center',
+    backgroundColor: 'rgba(0,0,0,0)',
+    color: 'white',
+    textShadowOffset: {width: 1, height: 1},
+    textShadowRadius: 1,
+    textShadowColor: '#36454f'
   }
 });
 
 class Quote extends Component {
   render() {
+    const {quote, background, author} = this.props.qod
     return (
-      <View style={styles.container}>
-        <Text style={styles.description}>
-          This is a quote
-        </Text>
-      </View>
+      <Image style={styles.container}
+      source={{uri: background}}>
+        <View style={styles.backdropView}>
+          <Text style={styles.quoteText}>
+             {quote}{"\n\n"}
+             {author}
+          </Text>
+        </View>
+      </Image>
     );
   }
 }
