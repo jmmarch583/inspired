@@ -6,6 +6,7 @@ var Quote = require('./quote.ios');
 'use strict';
 
 import React, { Component } from 'react';
+
 import {
   AppRegistry,
   StyleSheet,
