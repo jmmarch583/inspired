@@ -16,20 +16,23 @@ import {
 } from 'react-native';
 
 import api from './api';
+import qod from './api';
 
 class Inspired extends Component {
   constructor(props){
     super(props);
     this.state = {
-      categories: [],
+      category: '',
+      qod: [],
+      categoryQuote: [],
       selectedTab: 'home'
     }
   }
 
   componentDidMount(){
-    var response = api.getQuote()
+    var response = qod.getQuoteofDay()
     .then((resJson) => {
-      this.setState({categories: resJson.contents.quotes})
+      this.setState({qod: resJson.contents.quotes[0]})
     })
     .catch((error) => {
       console.log("these are your errors",error);
@@ -37,10 +40,8 @@ class Inspired extends Component {
   }
 
   render() {
-    const {categories} = this.state
-    const response = categories[0]
-    const quote = response
-    console.log(quote)
+    const {quote, author, background} = this.state.qod
+    console.log(quote, author, background)
     return (
       <TabBarIOS selectedTab={this.state.selectedTab}>
         <TabBarIOS.Item
@@ -54,14 +55,14 @@ class Inspired extends Component {
             <Home/>
           </TabBarIOS.Item>
           <TabBarIOS.Item
-            selected={this.state.selectedTab === 'quote'}
+            selected={this.state.selectedTab === 'qod'}
             systemIcon={'contacts'}
             onPress={() => {
                 this.setState({
-                  selectedTab: 'quote',
+                  selectedTab: 'qod',
                 });
             }}>
-              <Quote/>
+              <Quote qod={this.state.qod}/>
             </TabBarIOS.Item>
           </TabBarIOS>
     );
