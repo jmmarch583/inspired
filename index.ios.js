@@ -115,7 +115,7 @@ class Inspired extends Component {
               });
             }}>
               <Home openModal={this.openModal} toggleDisable={this.toggleDisable} toggleSwipeToClose={this.toggleSwipeToClose}
-              quote={this.state.qod}/>
+              quote={this.state.categoryQuote}/>
             </Icon.TabBarItemIOS>
             <Icon.TabBarItemIOS
               title="Quote of the Day"
