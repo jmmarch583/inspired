@@ -72,23 +72,26 @@ class Home extends Component {
 
   handleArt(event) {
     event.preventDefault();
-    var refs = this.refs
-    var category = 'art'
-    this.props.openModal(refs, category)
+    const refs = this.refs
+    const category = 'art'
+    this.props.openModal(refs)
+    this.props.changeCategory(category)
   }
 
   handleSports(event) {
     event.preventDefault();
     var refs = this.refs
     var category = 'sports'
-    this.props.openModal(refs, category)
+    this.props.openModal(refs)
+    this.props.changeCategory(category)
   }
 
   handleManagement(event) {
       event.preventDefault();
       var refs = this.refs
       var category = 'management'
-      this.props.openModal(refs, category)
+      this.props.openModal(refs)
+      this.props.changeCategory(category)
     }
 
   render() {

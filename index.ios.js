@@ -33,10 +33,14 @@ class Inspired extends Component {
       sliderValue: 0.3,
     }
     this.openModal = this.openModal.bind(this);
+    this.changeCategory = this.changeCategory.bind(this);
   }
 
-  openModal(refs, category) {
+  changeCategory(category) {
     this.setState({category: category})
+  }
+
+  openModal(refs) {
     refs.modal.open();
   }
   toggleDisable() {
@@ -101,6 +105,7 @@ class Inspired extends Component {
   }
 
   render() {
+    console.log("category", this.state.category)
     return (
         <TabBarIOS selectedTab={this.state.selectedTab}>
           <Icon.TabBarItemIOS
@@ -113,8 +118,11 @@ class Inspired extends Component {
                   selectedTab: 'home',
               });
             }}>
-              <Home openModal={this.openModal} toggleDisable={this.toggleDisable} toggleSwipeToClose={this.toggleSwipeToClose}
-                                          quote={this.state.categoryQuote}
+              <Home openModal={this.openModal}
+                          changeCategory={this.changeCategory}
+                          toggleDisable={this.toggleDisable}
+                          toggleSwipeToClose={this.toggleSwipeToClose}
+                          quote={this.state.categoryQuote}
               />
             </Icon.TabBarItemIOS>
             <Icon.TabBarItemIOS
