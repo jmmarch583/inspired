@@ -72,15 +72,13 @@ class Home extends Component {
   }
 
   render() {
-    console.log("props", this.props)
     const {quote} = this.props
     return (
-
       <View style={styles.container}>
-      <Text>
-        Welcome to Inspired! {"\n\n\n"}
-      </Text>
-      <View>
+        <Text>
+          Welcome to Inspired!
+        </Text>
+      <View style={styles.container}>
         <Button onPress={this.handleArt} style={styles.btn}> Art</Button>
       </View>
         <Modal style={[styles.modal, styles.modal]} ref={"modal"} swipeToClose={this.props.swipeToClose}>
