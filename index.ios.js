@@ -35,8 +35,9 @@ class Inspired extends Component {
     this.openModal = this.openModal.bind(this);
   }
 
-  openModal(info) {
-    info.modal.open();
+  openModal(refs, category) {
+    this.setState({category: category})
+    refs.modal.open();
   }
   toggleDisable() {
       this.setState({isDisabled: !this.state.isDisabled});

@@ -67,26 +67,28 @@ class Home extends Component {
     super(props, context);
     this.handleArt = this.handleArt.bind(this);
     this.handleSports = this.handleSports.bind(this);
-    this.handleArt = this.handleArt.bind(this);
+    this.handleManagement = this.handleArt.bind(this);
   }
 
   handleArt(event) {
     event.preventDefault();
     var refs = this.refs
-    this.props.openModal(refs)
+    var category = 'art'
+    this.props.openModal(refs, category)
   }
 
   handleSports(event) {
     event.preventDefault();
     var refs = this.refs
-    this.props.openModal(refs)
+    var category = 'sports'
+    this.props.openModal(refs, category)
   }
 
-  handleArt(event) {
+  handleManagement(event) {
       event.preventDefault();
-      console.log("this is handle press")
       var refs = this.refs
-      this.props.openModal(refs)
+      var category = 'management'
+      this.props.openModal(refs, category)
     }
 
   render() {
