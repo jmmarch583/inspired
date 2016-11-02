@@ -1,6 +1,7 @@
 'use strict';
 
 var Quote = require('./quote.ios');
+
 import Modal from 'react-native-modalbox';
 import React, { Component } from 'react';
 import Button from 'react-native-button';
