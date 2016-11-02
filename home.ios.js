@@ -1,8 +1,7 @@
 'use strict';
 
-import Button from 'react-native-button';
+var Quote = require('./quote.ios');
 import Modal from 'react-native-modalbox';
-
 import React, { Component } from 'react';
 import Button from 'react-native-button';
 
@@ -22,7 +21,13 @@ var styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#123456'
+    backgroundColor: '#ffffff'
+  },
+  welcome: {
+    fontFamily: 'Cochin',
+    fontSize: 20,
+    textAlign: 'left',
+    margin: 10,
   },
   wrapper: {
    paddingTop: 50,
@@ -55,29 +60,30 @@ var styles = StyleSheet.create({
 class Home extends Component {
   constructor(props, context) {
     super(props, context);
-    this.handlePress = this.handlePress.bind(this);
+    this.handleArt = this.handleArt.bind(this);
   }
 
-  handlePress(){
-    this.props.buttonTouch(this.refs)
+  handleArt(event) {
+    event.preventDefault();
+    console.log("this is handle press")
+    var refs = this.refs
+    this.props.openModal(refs)
   }
 
   render() {
+    console.log("props", this.props)
+    const {quote} = this.props
     return (
 
-      <View style={styles.wrapper}>
-        <Button
-          style={{fontSize: 20, color: 'green'}}
-          styleDisabled={{color: 'red'}}
-          onPress={() => this._handlePress()}>
-          Categories
-        </Button>
-      <Button onPress={this.props.handlePress} style={styles.btn}>Basic modal</Button>
-        <Text style={styles.description}>
-          Welcome to Inspired!
-        </Text>
+      <View style={styles.container}>
+      <Text style={styles.welcome}>
+        Welcome to Inspired! {"\n\n\n"}
+      </Text>
+
+      <Button onPress={this.handleArt} style={styles.btn}> Art</Button>
+
         <Modal style={[styles.modal, styles.modal]} ref={"modal"} swipeToClose={this.props.swipeToClose}>
-          <Text style={styles.text}>Basic modal</Text>
+            <Quote quote={quote}/>
           <Button onPress={this.toggleSwipeToClose} style={styles.btn}>Disable swipeToClose({this.props.swipeToClose ? "true" : "false"})</Button>
         </Modal>
       </View>

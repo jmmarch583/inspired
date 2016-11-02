@@ -16,7 +16,7 @@ import {
   View
 } from 'react-native';
 
-import api from './api';
+import catQuote from './api';
 import qod from './api';
 import Icon from 'react-native-vector-icons/FontAwesome'
 
@@ -36,8 +36,8 @@ class Inspired extends Component {
     this.openModal = this.openModal.bind(this);
   }
 
-  openModal() {
-    this.refs.modal.open();
+  openModal(info) {
+    info.modal.open();
   }
   toggleDisable() {
       this.setState({isDisabled: !this.state.isDisabled});
@@ -66,13 +66,11 @@ class Inspired extends Component {
     .catch((error) => {
       console.log("these are your errors",error);
     });
+
   }
 
   render() {
-    const {quote, author, background} = this.state.qod
-    console.log(this.refs)
     return (
-
         <TabBarIOS selectedTab={this.state.selectedTab}>
           <Icon.TabBarItemIOS
             title="Home"
@@ -84,7 +82,8 @@ class Inspired extends Component {
                   selectedTab: 'home',
               });
             }}>
-              <Home buttonTouch={this.openModal} toggleDisable={this.toggleDisable} toggleSwipeToClose={this.toggleSwipeToClose}/>
+              <Home openModal={this.openModal} toggleDisable={this.toggleDisable} toggleSwipeToClose={this.toggleSwipeToClose}
+              quote={this.state.qod}/>
             </Icon.TabBarItemIOS>
             <Icon.TabBarItemIOS
               title="Quote of the Day"
@@ -96,7 +95,7 @@ class Inspired extends Component {
                     selectedTab: 'qod',
                   });
               }}>
-                <Quote qod={this.state.qod}/>
+                <Quote quote={this.state.qod}/>
                 </Icon.TabBarItemIOS>
             </TabBarIOS>
     );

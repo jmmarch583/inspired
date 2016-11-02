@@ -21,7 +21,7 @@ var styles = StyleSheet.create({
     resizeMode: 'cover',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#654321',
+    backgroundColor: '#ffffff',
   },
   backdropView: {
     height: 120,
@@ -41,14 +41,15 @@ var styles = StyleSheet.create({
 
 class Quote extends Component {
   render() {
-    const {quote, background, author} = this.props.qod
+    const {quote, background, author} = this.props.quote
+    console.log(quote, background, author)
     return (
       <Image style={styles.container}
       source={{uri: background}}>
         <View style={styles.backdropView}>
           <Text style={styles.quoteText}>
-             {quote}{"\n\n"}
-             {author}
+             "{quote}"{"\n\n"}
+             -{author}
           </Text>
         </View>
       </Image>
