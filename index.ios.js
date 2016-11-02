@@ -16,15 +16,14 @@ import {
   View
 } from 'react-native';
 
-import catQuote from './api';
-import qod from './api';
+import apiKey from './api';
 import Icon from 'react-native-vector-icons/FontAwesome'
 
 class Inspired extends Component {
   constructor(props){
     super(props);
     this.state = {
-      category: '',
+      category: 'inspire',
       qod: [],
       categoryQuote: [],
       selectedTab: 'home',
@@ -34,10 +33,15 @@ class Inspired extends Component {
       sliderValue: 0.3,
     }
     this.openModal = this.openModal.bind(this);
+    this.changeCategory = this.changeCategory.bind(this);
   }
 
-  openModal(info) {
-    info.modal.open();
+  changeCategory(category) {
+    this.setState({category: category})
+  }
+
+  openModal(refs) {
+    refs.modal.open();
   }
   toggleDisable() {
       this.setState({isDisabled: !this.state.isDisabled});
@@ -48,28 +52,61 @@ class Inspired extends Component {
     }
 
 
-    renderList() {
-      var list = [];
+    // renderList() {
+    //   var list = [];
+    //
+    //   for (var i=0;i<50;i++) {
+    //     list.push(<Text style={styles.text} key={i}>Elem {i}</Text>);
+    //   }
+    //   return list;
+    // }
+      getQuote(category){
+        var url = "https://quotes.rest/qod?category=" + category;
+        return fetch(url, {
+          method: 'GET',
+          headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+              'X-TheySaidSo-Api-Secret': apiKey,
+          }
+        })
+        .then((res) => res.json())
+      };
 
-      for (var i=0;i<50;i++) {
-        list.push(<Text style={styles.text} key={i}>Elem {i}</Text>);
-      }
-
-      return list;
-    }
+      getQuoteofDay(){
+        var url = "https://quotes.rest/qod.json?maxlength=100";
+        return fetch(url, {
+          method: 'GET',
+          headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+              'X-TheySaidSo-Api-Secret': apiKey,
+          }
+        })
+        .then((res) => res.json())
+      };
 
   componentDidMount(){
-    var response = qod.getQuoteofDay()
+    var response = this.getQuoteofDay()
     .then((resJson) => {
       this.setState({qod: resJson.contents.quotes[0]})
     })
     .catch((error) => {
-      console.log("these are your errors",error);
+      console.log("these are your errors", error);
     });
 
   }
-
+  componentWillUpdate() {
+    var response = this.getQuote(this.state.category)
+    .then((resJson) => {
+      this.setState({categoryQuote: resJson.contents.quotes[0]})
+    })
+    .catch((error) => {
+      console.log("these are your errors", error);
+    });
+  }
   render() {
+    console.log("category", this.state.category)
     return (
         <TabBarIOS selectedTab={this.state.selectedTab}>
           <Icon.TabBarItemIOS
@@ -82,8 +119,12 @@ class Inspired extends Component {
                   selectedTab: 'home',
               });
             }}>
-              <Home openModal={this.openModal} toggleDisable={this.toggleDisable} toggleSwipeToClose={this.toggleSwipeToClose}
-              quote={this.state.qod}/>
+              <Home openModal={this.openModal}
+                          changeCategory={this.changeCategory}
+                          toggleDisable={this.toggleDisable}
+                          toggleSwipeToClose={this.toggleSwipeToClose}
+                          quote={this.state.categoryQuote}
+              />
             </Icon.TabBarItemIOS>
             <Icon.TabBarItemIOS
               title="Quote of the Day"
