@@ -67,7 +67,7 @@ class Home extends Component {
     super(props, context);
     this.handleArt = this.handleArt.bind(this);
     this.handleSports = this.handleSports.bind(this);
-    this.handleManagement = this.handleArt.bind(this);
+    this.handleManagement = this.handleManagement.bind(this);
   }
 
   handleArt(event) {

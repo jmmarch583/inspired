@@ -87,13 +87,6 @@ class Inspired extends Component {
       };
 
   componentDidMount(){
-    var response = this.getQuote(this.state.category)
-    .then((resJson) => {
-      this.setState({categoryQuote: resJson.contents.quotes[0]})
-    })
-    .catch((error) => {
-      console.log("these are your errors", error);
-    });
     var response = this.getQuoteofDay()
     .then((resJson) => {
       this.setState({qod: resJson.contents.quotes[0]})
@@ -103,7 +96,15 @@ class Inspired extends Component {
     });
 
   }
-
+  componentWillUpdate() {
+    var response = this.getQuote(this.state.category)
+    .then((resJson) => {
+      this.setState({categoryQuote: resJson.contents.quotes[0]})
+    })
+    .catch((error) => {
+      console.log("these are your errors", error);
+    });
+  }
   render() {
     console.log("category", this.state.category)
     return (
