@@ -19,7 +19,6 @@ import {
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#ffffff'
@@ -39,7 +38,7 @@ var styles = StyleSheet.create({
      alignItems: 'center'
    },
    btn: {
-    margin: 10,
+    margin: 5,
     backgroundColor: "#3B5998",
     color: "white",
     padding: 10
@@ -55,6 +54,11 @@ var styles = StyleSheet.create({
   text: {
     color: "black",
     fontSize: 22
+  },
+  categories: {
+    justifyContent: "center",
+    margin: 5,
+    padding: 2
   }
 });
 
@@ -62,24 +66,40 @@ class Home extends Component {
   constructor(props, context) {
     super(props, context);
     this.handleArt = this.handleArt.bind(this);
+    this.handleSports = this.handleSports.bind(this);
+    this.handleArt = this.handleArt.bind(this);
   }
 
   handleArt(event) {
     event.preventDefault();
-    console.log("this is handle press")
     var refs = this.refs
     this.props.openModal(refs)
   }
+
+  handleSports(event) {
+    event.preventDefault();
+    var refs = this.refs
+    this.props.openModal(refs)
+  }
+
+  handleArt(event) {
+      event.preventDefault();
+      console.log("this is handle press")
+      var refs = this.refs
+      this.props.openModal(refs)
+    }
 
   render() {
     const {quote} = this.props
     return (
       <View style={styles.container}>
-        <Text>
+        <Text style={styles.welcome}>
           Welcome to Inspired!
         </Text>
-      <View style={styles.container}>
-        <Button onPress={this.handleArt} style={styles.btn}> Art</Button>
+      <View style={styles.categories}>
+        <Button onPress={this.handleArt} style={styles.btn}>Art</Button>
+        <Button onPress={this.handleManagement} style={styles.btn}>Management</Button>
+        <Button onPress={this.handleSports} style={styles.btn}>Sports</Button>
       </View>
         <Modal style={[styles.modal, styles.modal]} ref={"modal"} swipeToClose={this.props.swipeToClose}>
             <Quote quote={quote}/>

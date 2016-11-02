@@ -23,7 +23,7 @@ class Inspired extends Component {
   constructor(props){
     super(props);
     this.state = {
-      category: '',
+      category: 'inspire',
       qod: [],
       categoryQuote: [],
       selectedTab: 'home',
@@ -57,7 +57,6 @@ class Inspired extends Component {
     // }
       getQuote(category){
         var url = "https://quotes.rest/qod?category=" + category;
-        debugger;
         return fetch(url, {
           method: 'GET',
           headers: {
@@ -83,8 +82,7 @@ class Inspired extends Component {
       };
 
   componentDidMount(){
-    var art = "art"
-    var response = this.getQuote(art)
+    var response = this.getQuote(this.state.category)
     .then((resJson) => {
       this.setState({categoryQuote: resJson.contents.quotes[0]})
     })
@@ -115,7 +113,8 @@ class Inspired extends Component {
               });
             }}>
               <Home openModal={this.openModal} toggleDisable={this.toggleDisable} toggleSwipeToClose={this.toggleSwipeToClose}
-              quote={this.state.categoryQuote}/>
+                                          quote={this.state.categoryQuote}
+              />
             </Icon.TabBarItemIOS>
             <Icon.TabBarItemIOS
               title="Quote of the Day"
