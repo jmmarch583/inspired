@@ -77,15 +77,14 @@ class Home extends Component {
     return (
 
       <View style={styles.container}>
-      <Text style={styles.welcome}>
+      <Text>
         Welcome to Inspired! {"\n\n\n"}
       </Text>
-
-      <Button onPress={this.handleArt} style={styles.btn}> Art</Button>
-
+      <View>
+        <Button onPress={this.handleArt} style={styles.btn}> Art</Button>
+      </View>
         <Modal style={[styles.modal, styles.modal]} ref={"modal"} swipeToClose={this.props.swipeToClose}>
             <Quote quote={quote}/>
-          <Button onPress={this.toggleSwipeToClose} style={styles.btn}>Disable swipeToClose({this.props.swipeToClose ? "true" : "false"})</Button>
         </Modal>
       </View>
     );

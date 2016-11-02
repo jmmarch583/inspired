@@ -16,8 +16,7 @@ import {
   View
 } from 'react-native';
 
-import catQuote from './api';
-import qod from './api';
+import apiKey from './api';
 import Icon from 'react-native-vector-icons/FontAwesome'
 
 class Inspired extends Component {
@@ -48,23 +47,56 @@ class Inspired extends Component {
     }
 
 
-    renderList() {
-      var list = [];
+    // renderList() {
+    //   var list = [];
+    //
+    //   for (var i=0;i<50;i++) {
+    //     list.push(<Text style={styles.text} key={i}>Elem {i}</Text>);
+    //   }
+    //   return list;
+    // }
+      getQuote(category){
+        var url = "https://quotes.rest/qod?category=" + category;
+        debugger;
+        return fetch(url, {
+          method: 'GET',
+          headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+              'X-TheySaidSo-Api-Secret': apiKey,
+          }
+        })
+        .then((res) => res.json())
+      };
 
-      for (var i=0;i<50;i++) {
-        list.push(<Text style={styles.text} key={i}>Elem {i}</Text>);
-      }
-
-      return list;
-    }
+      getQuoteofDay(){
+        var url = "https://quotes.rest/qod.json?maxlength=100";
+        return fetch(url, {
+          method: 'GET',
+          headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+              'X-TheySaidSo-Api-Secret': apiKey,
+          }
+        })
+        .then((res) => res.json())
+      };
 
   componentDidMount(){
-    var response = qod.getQuoteofDay()
+    var art = "art"
+    var response = this.getQuote(art)
+    .then((resJson) => {
+      this.setState({categoryQuote: resJson.contents.quotes[0]})
+    })
+    .catch((error) => {
+      console.log("these are your errors", error);
+    });
+    var response = this.getQuoteofDay()
     .then((resJson) => {
       this.setState({qod: resJson.contents.quotes[0]})
     })
     .catch((error) => {
-      console.log("these are your errors",error);
+      console.log("these are your errors", error);
     });
 
   }
